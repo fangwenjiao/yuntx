@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.yuntongxun.ecdemo"
+    android:versionCode="1"
+    android:versionName="5.0.2r" >
+    
+    <uses-sdk android:minSdkVersion="10" />
+
+    <!-- 允许程序打开网络sockets -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <!-- 允许程序访问有关的网络信息 -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <!-- 允许程序访问Wi-Fi网络状态信息 -->
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <!-- 允许应用写（非读）用户的外部存储器 -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <!-- 允许读取电话的状态 -->
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <!-- 允许一个程序获取信息有关当前或最近运行的任务，一个缩略的任务状态，是否活动等等 -->
+    <uses-permission android:name="android.permission.GET_TASKS" />
+    <!-- 允许程序录制音频 -->
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <!-- GPS定位权限(非必选，由应用选择是否需要) -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <!-- 允许程序读取用户联系人数据(非必选，由应用选择是否需要) -->
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <!-- 允许访问振动设备(非必选,由应用选择是否需要) -->
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <!-- 自定义实现Application -->
+    <application
+        android:name=".ECApplication"
+        android:allowBackup="true"
+        android:hardwareAccelerated="true"
+        android:largeHeap="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        <meta-data
+            android:name="LOGGING"
+            android:value="true" />
+        <meta-data
+            android:name="ALPHA"
+            android:value="true" />
+        <!-- 以下两项为友盟统计 -->
+        <meta-data
+            android:name="UMENG_APPKEY"
+            android:value="551bf59dfd98c5b39e002032" />
+        <meta-data
+            android:name="UMENG_CHANNEL"
+            android:value="yuntongxun_im_5.0.1b" />
+        <!-- Demo主程序路口 -->
+        <activity
+            android:name=".ui.LauncherActivity"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <!-- ECSDK核心服务类 -->
+        <service
+            android:name="com.yuntongxun.ecsdk.ECClientService"
+            android:enabled="true"
+            android:exported="false" />
+        <!-- 登陆界面 -->
+        <activity
+            android:name=".ui.account.LoginActivity"
+            android:label="@string/login_title_activity"
+            android:windowSoftInputMode="adjustResize|stateHidden" >
+        </activity>
+        <!-- 会话消息聊天主界面 -->
+        <activity
+            android:name=".ui.chatting.ChattingActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustResize" />
+        <!-- 联系人详情选项卡 -->
+        <activity
+            android:name=".ui.contact.ContactDetailActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+        <!-- 手机系统联系人 -->
+        <activity
+            android:name=".ui.contact.MobileContactActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+        <!-- 发送预览图片 -->
+        <activity
+            android:name=".ui.chatting.ImagePreviewActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:process=":tools"
+            android:screenOrientation="portrait"
+            android:theme="@style/CCPTheme.Holo.Transparent" />
+        <!-- 查看聊天图片 -->
+        <activity
+            android:name=".ui.chatting.ImageGalleryActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:screenOrientation="portrait"
+            android:theme="@style/CCPTheme.Holo.Transparent"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".ui.chatting.ImageGralleryPagerActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+        <!-- 文件浏览器 -->
+        <activity
+            android:name=".ui.plugin.FileExplorerActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize" />
+        <!-- 群组 -->
+        <activity
+            android:name=".ui.group.CreateGroupActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize" />
+        <!-- 联系人选择 -->
+        <activity
+            android:name=".ui.contact.ContactSelectListActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+        <!-- 手机联系人选择 -->
+        <activity
+            android:name=".ui.contact.MobileContactSelectActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+        <!-- 设置页面 -->
+        <activity
+            android:name=".ui.settings.SettingsActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".ui.contact.GroupCardSelectUI"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+        <activity
+            android:name=".ui.group.GroupInfoActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+        <!-- 群组搜索 -->
+        <activity
+            android:name=".ui.group.SearchGroupActivity"
+            android:label="@string/title_activity_search_group" >
+        </activity>
+        <activity
+            android:name=".ui.group.BaseSearch"
+            android:label="@string/title_activity_search_group"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" >
+        </activity>
+        
+        <activity
+            android:name=".ui.settings.EditConfigureActivity"
+            android:label="@string/title_activity_edit_configure" >
+        </activity>
+        <!-- 申请加入群组 -->
+        <activity
+            android:name=".ui.group.ApplyWithGroupPermissionActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".ui.group.GroupNoticeActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+        
+        <activity
+            android:name=".ui.settings.LoginSettingActivity"
+            android:label="@string/title_activity_login_setting" >
+        </activity>
+        <activity
+            android:name=".ui.settings.SettingPersionInfoActivity"
+            android:label="@string/title_activity_setting_persion_info" >
+        </activity>
+    </application>
+
+</manifest>
